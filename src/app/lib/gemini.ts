@@ -13,7 +13,7 @@ export async function getEmbedding(text: string) {
       contents: text,
     });
     // Use response.embeddings or fallback safely
-    return response.embeddings?.[0]?.values || [];
+    return (response as any).embeddings?.[0]?.values || (response as any).embedding?.values || [];
   } catch (error) {
     console.error('Embedding error:', error);
     return [];
